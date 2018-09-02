@@ -1,5 +1,6 @@
 import React from "react";
 import Popup from "reactjs-popup";
+
 //
 
 class EditPopup extends React.Component {
@@ -10,20 +11,20 @@ class EditPopup extends React.Component {
             id: this.props.id,
             name: this.props.nameInput,
             description: this.props.descrInput,
-            status:this.props.status
+            status: this.props.status
         };
     }
 
     openModal = () => {
-        this.setState({ open: true });
+        this.setState({open: true});
     };
     closeModal = () => {
-        this.setState({ open: false });
+        this.setState({open: false});
     };
 
     onChangeHandler = (event) => {
         this.setState({
-            [event.target.name] : event.target.value,
+            [event.target.name]: event.target.value,
         })
     };
 
@@ -45,26 +46,26 @@ class EditPopup extends React.Component {
                 >
                     <div className="modal">
                         <div className="closeButton">
-                        <button className="close" onClick={this.closeModal} > close </button>
+                            <button className="close" onClick={this.closeModal}> close</button>
                         </div>
                         <p align="center">Edit ticket</p>
                         <p></p>
                         <label className="label1">Name</label>
-                            <input className="inputName"
-                                   type="text"
-                                   name='name'
-                                   defaultValue={this.state.name}
-                                   onChange={this.onChangeHandler.bind(this)}/>
+                        <input className="inputName"
+                               type="text"
+                               name='name'
+                               defaultValue={this.state.name}
+                               onChange={this.onChangeHandler.bind(this)}/>
                         <p></p>
 
                         <label className="label1">Description</label>
-                            <input className="inputDesc"
-                                   type="text"
-                                   name='description'
-                                   defaultValue={this.state.description}
-                                   onChange={this.onChangeHandler.bind(this)} size={50}/>
+                        <input className="inputDesc"
+                               type="text"
+                               name='description'
+                               defaultValue={this.state.description}
+                               onChange={this.onChangeHandler.bind(this)} size={50}/>
                         <div className="closeButton">
-                        <button onClick={this.handleSubmit.bind(this)}  >Save</button>
+                            <button onClick={this.handleSubmit.bind(this)}>Save</button>
                         </div>
                     </div>
                 </Popup>
@@ -72,4 +73,5 @@ class EditPopup extends React.Component {
         );
     }
 }
+
 export default EditPopup;

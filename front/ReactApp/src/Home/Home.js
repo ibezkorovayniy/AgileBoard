@@ -13,15 +13,15 @@ class Home extends React.Component {
         super(props);
 
         this.state = {
-            todoItems:[],
-            inprogressItems:[],
-            doneItems:[],
+            todoItems: [],
+            inprogressItems: [],
+            doneItems: [],
             isLoaded: false
         }
     }
 
     componentDidMount() {
-        this.setState({isLoaded:true});
+        this.setState({isLoaded: true});
         this.fetchData();
     }
 
@@ -52,20 +52,20 @@ class Home extends React.Component {
         const itemId = this.state.todoItems[index].id;
         console.log(itemId);
         axios({
-                method: 'put',
-                url: 'http://localhost:8080/api/tickets/' + itemId,
-                data: {
-                    name: this.state.todoItems[index].name,
-                    description: this.state.todoItems[index].description,
-                    status: 'IN_PROGRESS'
-                }
-            }).then(res => {
+            method: 'put',
+            url: 'http://localhost:8080/api/tickets/' + itemId,
+            data: {
+                name: this.state.todoItems[index].name,
+                description: this.state.todoItems[index].description,
+                status: 'IN_PROGRESS'
+            }
+        }).then(res => {
                 console.log(res.data);
                 this.fetchData();
-                }
-            ).catch(error => {
-                console.log(error)
-            });
+            }
+        ).catch(error => {
+            console.log(error)
+        });
     };
 
     handleInprogressMove = (index) => {
@@ -107,8 +107,8 @@ class Home extends React.Component {
         });
     };
 
-    handleDeleteTodo =(index) => {
-        if(window.confirm('Delete this ticket: ' + this.state.todoItems[index].name + ' ?')) {
+    handleDeleteTodo = (index) => {
+        if (window.confirm('Delete this ticket: ' + this.state.todoItems[index].name + ' ?')) {
             const itemId = this.state.todoItems[index].id;
             axios.delete(('http://localhost:8080/api/tickets/' + itemId))
                 .then(this.fetchData)
@@ -118,8 +118,8 @@ class Home extends React.Component {
         }
     };
 
-    handleDeleteInp =(index) => {
-        if(window.confirm('Delete this ticket: ' + this.state.inprogressItems[index].name + ' ?')) {
+    handleDeleteInp = (index) => {
+        if (window.confirm('Delete this ticket: ' + this.state.inprogressItems[index].name + ' ?')) {
             const itemId = this.state.inprogressItems[index].id;
             axios.delete(('http://localhost:8080/api/tickets/' + itemId))
                 .then(this.fetchData)
@@ -129,8 +129,8 @@ class Home extends React.Component {
         }
     };
 
-    handleDeleteDone =(index) => {
-        if(window.confirm('Delete this ticket: ' + this.state.doneItems[index].name + ' ?')) {
+    handleDeleteDone = (index) => {
+        if (window.confirm('Delete this ticket: ' + this.state.doneItems[index].name + ' ?')) {
             const itemId = this.state.doneItems[index].id;
             axios.delete(('http://localhost:8080/api/tickets/' + itemId))
                 .then(this.fetchData)
@@ -139,7 +139,6 @@ class Home extends React.Component {
                 })
         }
     };
-
 
     handleEdit = (itemId, name, description, status) => {
         axios({
@@ -161,81 +160,63 @@ class Home extends React.Component {
 
     handleSave = (name, description, status) => {
         axios.post('http://localhost:8080/api/ticket', {name, description, status})
-        .then(res => {
-                console.log(res.data);
-                this.fetchData();
-            }
-        ).catch(error => {
+            .then(res => {
+                    console.log(res.data);
+                    this.fetchData();
+                }
+            ).catch(error => {
             console.log(error)
         });
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     render() {
-        if(!this.state.isLoaded) {
+        if (!this.state.isLoaded) {
             return <p>Loading</p>
         }
-            return (
-                    <div className="Home">
-                        <h1>Agile Board</h1>
+        return (
+            <div className="Home">
+                <h1>Agile Board</h1>
 
-                        <table className="Table">
-                            <thead>
-                            <tr>
-                                <th>TO DO
-                                    <AddPopup status={'TODO'} save={this.handleSave}/>
-                                </th>
-                                <th>IN PROGRESS
-                                    <AddPopup status={'IN_PROGRESS'} save={this.handleSave}/>
-                                </th>
-                                <th>DONE
-                                    <AddPopup status={'DONE'} save={this.handleSave}/>
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <Todo todoItems={this.state.todoItems}
-                                          clickTodo={this.handleTodoMove}
-                                          deleteTodo={this.handleDeleteTodo}
-                                          editTicket={this.handleEdit}/>
-                                </td>
-                                <td>
-                                    <Inprogress inprogressItems={this.state.inprogressItems}
-                                                clickInp={this.handleInprogressMove}
-                                                deleteInp={this.handleDeleteInp}
-                                                editTicket={this.handleEdit}/>
-                                </td>
-                                <td>
-                                    <Done doneItems={this.state.doneItems}
-                                          clickDone={this.handleDoneMove}
-                                          deleteDone={this.handleDeleteDone}
-                                          editTicket={this.handleEdit}/>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <table className="Table">
+                    <thead>
+                    <tr>
+                        <th>TO DO
+                            <AddPopup status={'TODO'} save={this.handleSave}/>
+                        </th>
+                        <th>IN PROGRESS
+                            <AddPopup status={'IN_PROGRESS'} save={this.handleSave}/>
+                        </th>
+                        <th>DONE
+                            <AddPopup status={'DONE'} save={this.handleSave}/>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <Todo todoItems={this.state.todoItems}
+                                  clickTodo={this.handleTodoMove}
+                                  deleteTodo={this.handleDeleteTodo}
+                                  editTicket={this.handleEdit}/>
+                        </td>
+                        <td>
+                            <Inprogress inprogressItems={this.state.inprogressItems}
+                                        clickInp={this.handleInprogressMove}
+                                        deleteInp={this.handleDeleteInp}
+                                        editTicket={this.handleEdit}/>
+                        </td>
+                        <td>
+                            <Done doneItems={this.state.doneItems}
+                                  clickDone={this.handleDoneMove}
+                                  deleteDone={this.handleDeleteDone}
+                                  editTicket={this.handleEdit}/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         );
     }
 }
+
 export default Home

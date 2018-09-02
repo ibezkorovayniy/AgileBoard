@@ -1,5 +1,6 @@
 import React from "react";
 import Popup from "reactjs-popup";
+
 //
 
 class AddPopup extends React.Component {
@@ -7,20 +8,20 @@ class AddPopup extends React.Component {
         super(props);
         this.state = {
             open: false,
-            status:this.props.status
+            status: this.props.status
         };
     }
 
     openModal = () => {
-        this.setState({ open: true });
+        this.setState({open: true});
     };
     closeModal = () => {
-        this.setState({ open: false });
+        this.setState({open: false});
     };
 
     onChangeHandler = (event) => {
         this.setState({
-            [event.target.name] : event.target.value,
+            [event.target.name]: event.target.value,
         })
     };
 
@@ -41,7 +42,7 @@ class AddPopup extends React.Component {
                 >
                     <div className="modal">
                         <div className="closeButton">
-                        <button className="close" onClick={this.closeModal} > close </button>
+                            <button className="close" onClick={this.closeModal}> close</button>
                         </div>
                         <p align="center">Add ticket</p>
                         <p></p>
@@ -57,7 +58,7 @@ class AddPopup extends React.Component {
                                name='description'
                                onChange={this.onChangeHandler.bind(this)} size={50}/>
                         <div className="closeButton">
-                        <button onClick={this.handleSubmit.bind(this)}  >Save</button>
+                            <button onClick={this.handleSubmit.bind(this)}>Save</button>
                         </div>
                     </div>
                 </Popup>
@@ -65,4 +66,5 @@ class AddPopup extends React.Component {
         );
     }
 }
+
 export default AddPopup;
