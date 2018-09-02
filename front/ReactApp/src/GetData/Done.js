@@ -1,41 +1,41 @@
 import React, { Component } from 'react';
-import axios from "axios";
+import EditPopup from "../Popupform/EditPopup";
 
 class Done extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            items: [],
-            isLoaded: false,
-        }
-    }
+    moveTicketHandler = (index) => {
+        this.props.clickDone(index);
+    };
 
-    componentDidMount() {
-        axios.get('http://localhost:8080/api/tickets/DONE')
-            .then(res => {
-                this.setState({
-                    isLoaded: true,
-                    items: res.data,
-                });
-            });
-    }
+    deleteHandler = (index) => {
+        this.props.deleteDone(index);
+    };
+
+    handleSubmit = (itemId, name, description, status) => {
+        this.props.editTicket(itemId, name, description, status);
+    };
 
     render() {
-        const { isLoaded, items } = this.state;
-        if(!isLoaded) {
-            return <div>Loading....</div>;
-        } else {
+        const items = this.props.doneItems;
             return (
                 <div className="Done">
                     <ul>
-                        {items.map(item => (
-                            <li key={item.id}>
+                        {items.map((item,index) => (
+                            <li key={index}>
                                 Name: {item.name}
                                 <p></p>
-
                                 Description: {item.description}
                                 <p></p>
+                                <div className="buttons">
+                                <EditPopup nameInput={item.name}
+                                           descrInput={item.description}
+                                           id={item.id}
+                                           status={item.status}
+                                           handleSubmit={this.handleSubmit}/>
+                                <button onClick={this.moveTicketHandler.bind(this, index)}> Move </button>
+                                <button onClick={this.deleteHandler.bind(this, index)} > Delete </button>
+                                </div>
+                                <hr></hr>
                             </li>
 
                         ))}
@@ -43,7 +43,5 @@ class Done extends Component {
                 </div>
             );
         }
-
-  }
 }
 export default Done;

@@ -12,3 +12,35 @@
     font-family: Arial;
 }
 
+.label1 {
+    display: block;
+    text-align: left;
+    margin: 10px;
+}
+
+.inputName {
+    width: 40%;
+    display: block;
+    margin:15px;
+    padding: 10px;
+    alignment: center;
+}
+
+.inputDesc {
+    width: auto;
+    display: block;
+    margin:15px;
+    padding: 10px;
+    alignment: center;
+}
+.buttons {
+    display: inline-flex;
+}
+
+.closeButton {
+    display: block;
+    text-align: left;
+}
+
+
+

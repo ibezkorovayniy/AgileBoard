@@ -1,48 +1,47 @@
 import React, { Component } from 'react';
-import axios from "axios";
-
+import EditPopup from "../Popupform/EditPopup";
 
 class Inprogress extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            items: [],
-            isLoaded: false,
-        }
-    }
+    moveTicketHandler = (index) => {
+        this.props.clickInp(index);
+    };
 
-    componentDidMount() {
-        axios.get('http://localhost:8080/api/tickets/IN_PROGRESS')
-            .then(res => {
-                this.setState({
-                    items : res.data,
-                    isLoaded: true
-                });
-            });
 
-    }
+    deleteHandler = (index) => {
+        this.props.deleteInp(index);
+    };
+
+    handleSubmit = (itemId, name, description, status) => {
+        this.props.editTicket(itemId, name, description, status);
+    };
 
     render() {
-        var { isLoaded, items } = this.state;
-        if(!isLoaded) {
-            return <div>Loading....</div>;
-        } else {
+        const items = this.props.inprogressItems;
             return (
                 <div className="Inprogress">
                     <ul>
-                        {items.map(item => (
-                            <li key={item.id}>
+                        {items.map((item, index) => (
+                            <li key={index}>
                                 Name: {item.name}
                                 <p></p>
                                 Description: {item.description}
                                 <p></p>
+                                <div className="buttons">
+                                <EditPopup nameInput={item.name}
+                                           descrInput={item.description}
+                                           id={item.id}
+                                           status={item.status}
+                                           handleSubmit={this.handleSubmit}/>
+                                <button onClick={this.moveTicketHandler.bind(this, index)} > Move </button>
+                                <button onClick={this.deleteHandler.bind(this, index)} > Delete </button>
+                                </div>
+                                <hr></hr>
                             </li>
                         ))}
                     </ul>
                 </div>
             );
         }
-  }
 }
 export default Inprogress;

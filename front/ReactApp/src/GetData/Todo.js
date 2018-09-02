@@ -1,52 +1,64 @@
-import React, { Component } from 'react';
-import axios from 'axios'
+import React, {Component} from 'react';
+import EditPopup from "../Popupform/EditPopup";
 
 class Todo extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
-            items: [],
-            isLoaded: false,
-        }
+            showPopup: false
+        };
     }
 
-    componentDidMount() {
-        axios.get('http://localhost:8080/api/tickets/TODO')
-            .then(res => {
-                this.setState({
-                    isLoaded: true,
-                    items: res.data,
-                });
-            });
-    }
+
+
+    moveTicketHandler = (index) => {
+        console.log(index);
+        this.props.clickTodo(index);
+
+    };
+
+    deleteHandler = (index) => {
+        this.props.deleteTodo(index);
+    };
+
+
+    handleSubmit = (itemId, name, description, status) => {
+        this.props.editTicket(itemId, name, description, status);
+};
+
+
+
 
     render() {
-        var { isLoaded, items } = this.state;
-        if(!isLoaded) {
-            return <div>Loading....</div>;
-        } else {
+        const items = this.props.todoItems;
             return (
-                    <div className="Todo">
-                        <ul>
-                            {items.map(item => (
-                                <li key={item.id}>
-                                    Name: {item.name}
-                                    <p></p>
+                <div className="Todo">
+                    <ul>
+                        {items.map((item, index) => (
+                            <li key={index}>
+                                Name: {item.name}
+                                <p></p>
+                                Description: {item.description}
+                                <p></p>
+                                <div className="buttons">
+                                    <EditPopup nameInput={item.name}
+                                               descrInput={item.description}
+                                               id={item.id}
+                                               status={item.status}
+                                               handleSubmit={this.handleSubmit}/>
+                                    <button onClick={this.moveTicketHandler.bind(this, index)} > Move </button>
+                                    <button onClick={this.deleteHandler.bind(this, index)} > Delete </button>
+                                </div>
+                                <hr></hr>
 
-                                    Description: {item.description}
-                                    <p></p>
-                                    <button>Edit ticket</button>
-                                    <hr></hr>
+                            </li>
 
-                                </li>
-
-                            ))}
-                        </ul>
-                    </div>
+                        ))}
+                    </ul>
+                </div>
             );
         }
+    }
 
-  }
-}
 export default Todo;

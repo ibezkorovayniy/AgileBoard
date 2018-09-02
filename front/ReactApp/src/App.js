@@ -4,29 +4,6 @@ import {Link} from "react-router-dom";
 
 class App extends Component {
 
-  state = {
-    persons:[
-      {name:'Max', age:28},
-      {name:'Manu', age:29},
-      {name:'Stephani', age:26}
-    ]
-  };
-
-  clickHandler =() => {
-    console.log('Was clicked')
-  };
-
-  nameChangedHandler = (event) => {
-    this.setState({
-      persons:[
-        {name : 'Max', age : 35},
-        {name : event.target.value , age : 28},
-        {name :'Stephaniya', age : 27}
-      ]
-    })
-  };
-
-
 
   render() {
     const style = {
