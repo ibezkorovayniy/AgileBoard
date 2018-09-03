@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 
 class App extends Component {
 
-
     render() {
         const style = {
             backgroundColor: 'white',

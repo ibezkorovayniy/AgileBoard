@@ -1,8 +1,6 @@
 import React from "react";
 import Popup from "reactjs-popup";
 
-//
-
 class EditPopup extends React.Component {
     constructor(props) {
         super(props);
@@ -33,7 +31,6 @@ class EditPopup extends React.Component {
         this.closeModal();
     };
 
-
     render() {
         return (
             <div>
@@ -50,16 +47,16 @@ class EditPopup extends React.Component {
                         </div>
                         <p align="center">Edit ticket</p>
                         <p></p>
-                        <label className="label1">Name</label>
-                        <input className="inputName"
+                        <label className="newLabel">Name</label>
+                        <input className="Ticket-Name"
                                type="text"
                                name='name'
                                defaultValue={this.state.name}
                                onChange={this.onChangeHandler.bind(this)}/>
                         <p></p>
 
-                        <label className="label1">Description</label>
-                        <input className="inputDesc"
+                        <label className="newLabel">Description</label>
+                        <input className="Ticket-Desc"
                                type="text"
                                name='description'
                                defaultValue={this.state.description}

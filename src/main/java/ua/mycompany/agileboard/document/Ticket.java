@@ -13,9 +13,7 @@ public class Ticket {
     private Status status;
 
 
-    public Ticket() {
-
-    }
+    public Ticket() {}
 
     public Ticket(String id, String name, String description) {
         this.id = id;
@@ -68,7 +66,7 @@ public class Ticket {
     public enum Status {
         TODO,
         IN_PROGRESS,
-        DONE;
+        DONE
 
     }
 }

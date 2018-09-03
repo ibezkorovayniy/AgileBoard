@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import EditPopup from "../Popupform/EditPopup";
+import EditPopup from "../PopupForm/EditPopup";
 
-class Inprogress extends Component {
+class InProgress extends Component {
 
     moveTicketHandler = (index) => {
         this.props.clickInp(index);
     };
-
 
     deleteHandler = (index) => {
         this.props.deleteInp(index);
@@ -45,4 +44,4 @@ class Inprogress extends Component {
     }
 }
 
-export default Inprogress;
+export default InProgress;

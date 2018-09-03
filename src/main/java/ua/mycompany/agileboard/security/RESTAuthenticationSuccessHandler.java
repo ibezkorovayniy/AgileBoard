@@ -14,7 +14,6 @@ public class RESTAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) {
-
         clearAuthenticationAttributes(request);
     }
 }

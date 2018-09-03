@@ -1,17 +1,15 @@
 import React from 'react'
 import Todo from "../GetData/Todo";
-import Inprogress from "../GetData/Inprogress";
+import InProgress from "../GetData/InProgress";
 import Done from "../GetData/Done";
 import './Home.css'
 import axios from "axios";
-import AddPopup from "../Popupform/AddPopup";
-
+import AddPopup from "../PopupForm/AddPopup";
 
 class Home extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             todoItems: [],
             inprogressItems: [],
@@ -46,9 +44,7 @@ class Home extends React.Component {
             });
     };
 
-
     handleTodoMove = (index) => {
-        console.log(index);
         const itemId = this.state.todoItems[index].id;
         console.log(itemId);
         axios({
@@ -69,7 +65,6 @@ class Home extends React.Component {
     };
 
     handleInprogressMove = (index) => {
-        console.log(index);
         const itemId = this.state.inprogressItems[index].id;
         axios({
             method: 'put',
@@ -200,7 +195,7 @@ class Home extends React.Component {
                                   editTicket={this.handleEdit}/>
                         </td>
                         <td>
-                            <Inprogress inprogressItems={this.state.inprogressItems}
+                            <InProgress inprogressItems={this.state.inprogressItems}
                                         clickInp={this.handleInprogressMove}
                                         deleteInp={this.handleDeleteInp}
                                         editTicket={this.handleEdit}/>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import EditPopup from "../Popupform/EditPopup";
+import EditPopup from "../PopupForm/EditPopup";
 
 class Done extends Component {
 
@@ -37,7 +37,6 @@ class Done extends Component {
                             </div>
                             <hr></hr>
                         </li>
-
                     ))}
                 </ul>
             </div>

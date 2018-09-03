@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import EditPopup from "../Popupform/EditPopup";
+import EditPopup from "../PopupForm/EditPopup";
 
 class Todo extends Component {
 

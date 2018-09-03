@@ -1,8 +1,6 @@
 import React from "react";
 import Popup from "reactjs-popup";
 
-//
-
 class AddPopup extends React.Component {
     constructor(props) {
         super(props);
@@ -15,6 +13,7 @@ class AddPopup extends React.Component {
     openModal = () => {
         this.setState({open: true});
     };
+
     closeModal = () => {
         this.setState({open: false});
     };
@@ -46,14 +45,14 @@ class AddPopup extends React.Component {
                         </div>
                         <p align="center">Add ticket</p>
                         <p></p>
-                        <label className="label1">Name</label>
-                        <input className="inputName"
+                        <label className="newLabel">Name</label>
+                        <input className="Ticket-Name"
                                type="text"
                                name='name'
                                onChange={this.onChangeHandler.bind(this)}/>
                         <p></p>
-                        <label className="label1">Description</label>
-                        <input className="inputDesc"
+                        <label className="newLabel">Description</label>
+                        <input className="Ticket-Desc"
                                type="text"
                                name='description'
                                onChange={this.onChangeHandler.bind(this)} size={50}/>

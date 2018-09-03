@@ -37,7 +37,6 @@ class Login extends Component {
             })
     };
 
-
     render() {
         const {redirect} = this.state;
 
@@ -59,7 +58,6 @@ class Login extends Component {
             </div>
         );
     }
-
 }
 
 export default Login;
